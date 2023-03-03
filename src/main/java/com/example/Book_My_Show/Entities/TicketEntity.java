@@ -1,9 +1,11 @@
 package com.example.Book_My_Show.Entities;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -11,6 +13,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "tickets")
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class TicketEntity {
     @Id
@@ -29,6 +33,7 @@ public class TicketEntity {
 
     private String theaterName;
 
+    private String bookedSeats;
 
     @JoinColumn
     @ManyToOne
@@ -39,6 +44,7 @@ public class TicketEntity {
     @ManyToOne
     @JoinColumn
     private ShowEntity showEntity;
+
 
 
 

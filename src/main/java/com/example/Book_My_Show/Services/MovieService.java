@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class MovieService {
 
-
     @Autowired
     MovieRepository movieRepository;
 
@@ -26,4 +25,5 @@ public class MovieService {
 
 
     }
+
 }

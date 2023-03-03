@@ -3,7 +3,7 @@ package com.example.Book_My_Show.convertors;
 import com.example.Book_My_Show.Entities.ShowEntity;
 import com.example.Book_My_Show.EntryDtos.ShowEntryDto;
 
-public class ShowConvertors {
+public class Showconvertors {
 
 
     public static ShowEntity convertEntryToEntity(ShowEntryDto showEntryDto){

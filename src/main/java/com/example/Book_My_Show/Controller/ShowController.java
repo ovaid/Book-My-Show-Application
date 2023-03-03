@@ -19,14 +19,9 @@ public class ShowController {
     ShowService showService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addShow(@RequestBody ShowEntryDto showEntryDto) {
-        try {
-            String result = showService.addShow(showEntryDto);
-            return new ResponseEntity<>(result, HttpStatus.CREATED);
+    public ResponseEntity<String> addShow(@RequestBody ShowEntryDto showEntryDto){
 
-        } catch (Exception e) {
-            String response = "show not added";
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(showService.addShow(showEntryDto), HttpStatus.CREATED);
+
     }
 }

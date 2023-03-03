@@ -1,14 +1,13 @@
 package com.example.Book_My_Show.Services;
 
 
-import com.example.Book_My_Show.Entities.ShowEntity;
-import com.example.Book_My_Show.Entities.ShowSeatEntity;
-import com.example.Book_My_Show.EntryDtos.ShowEntryDto;
-import com.example.Book_My_Show.Repository.MovieRepository;
-import com.example.Book_My_Show.Repository.TheaterRepository;
 import com.example.Book_My_Show.Entities.*;
+import com.example.Book_My_Show.EntryDtos.ShowEntryDto;
 import com.example.Book_My_Show.Enums.SeatType;
-import com.example.Book_My_Show.convertors.ShowConvertors;
+import com.example.Book_My_Show.Repository.MovieRepository;
+import com.example.Book_My_Show.Repository.ShowRepository;
+import com.example.Book_My_Show.Repository.TheaterRepository;
+import com.example.Book_My_Show.convertors.Showconvertors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,16 +16,20 @@ import java.util.List;
 
 @Service
 public class ShowService {
+
     @Autowired
     MovieRepository movieRepository;
 
     @Autowired
     TheaterRepository theaterRepository;
 
+    @Autowired
+    ShowRepository showRepository;
+
     public String addShow(ShowEntryDto showEntryDto)
     {
         //1. Create a showEntity
-        ShowEntity showEntity = ShowConvertors.convertEntryToEntity(showEntryDto);
+        ShowEntity showEntity = Showconvertors.convertEntryToEntity(showEntryDto);
 
         int movieId = showEntryDto.getMovieId();
         int theaterId = showEntryDto.getTheaterId();
@@ -39,7 +42,6 @@ public class ShowService {
         showEntity.setMovieEntity(movieEntity);
         showEntity.setTheaterEntity(theaterEntity);
 
-
         //Pending attributes the listOfShowSeatsEnity
 
         List<ShowSeatEntity> seatEntityList = createShowSeatEntity(showEntryDto,showEntity);
@@ -49,15 +51,14 @@ public class ShowService {
 
         //Now we  also need to update the parent entities
 
-        List<ShowEntity> showEntityList = movieEntity.getShowEntityList();
-        showEntityList.add(showEntity);
-        movieEntity.setShowEntityList(showEntityList);
+
+        showEntity = showRepository.save(showEntity);
+
+        movieEntity.getShowEntityList().add(showEntity);
+        theaterEntity.getShowEntityList().add(showEntity);
+
 
         movieRepository.save(movieEntity);
-
-        List<ShowEntity> showEntityList1 = theaterEntity.getShowEntityList();
-        showEntityList1.add(showEntity);
-        theaterEntity.setShowEntityList(showEntityList1);
 
         theaterRepository.save(theaterEntity);
 

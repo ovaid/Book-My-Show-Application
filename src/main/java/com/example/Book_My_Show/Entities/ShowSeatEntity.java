@@ -1,12 +1,11 @@
 package com.example.Book_My_Show.Entities;
 
 import com.example.Book_My_Show.Enums.SeatType;
-import jakarta.persistence.*;
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity

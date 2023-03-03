@@ -1,13 +1,14 @@
 package com.example.Book_My_Show.Entities;
 
 import com.example.Book_My_Show.Enums.ShowType;
-import jakarta.persistence.*;
-import jdk.jfr.Timestamp;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import java.util.List;
 @Table(name="shows")
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ShowEntity {
 
     @Id
@@ -48,7 +51,6 @@ public class ShowEntity {
     @ManyToOne
     @JoinColumn
     private TheaterEntity theaterEntity;
-
 
     //Show is parent wrt to ticket
     @OneToMany(mappedBy = "showEntity",cascade = CascadeType.ALL)

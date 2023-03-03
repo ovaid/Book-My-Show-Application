@@ -3,6 +3,7 @@ package com.example.Book_My_Show.convertors;
 import com.example.Book_My_Show.Entities.UserEntity;
 import com.example.Book_My_Show.EntryDtos.UserEntryDto;
 
+
 public class UserConvertor {
 
     //Static is kept to avoid calling it via objects/instances
