@@ -26,7 +26,7 @@ public class TicketController {
 
         }catch (Exception e){
 
-            return "";
+            return "ticket is been booked";
         }
 
 
